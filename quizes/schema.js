@@ -1,10 +1,9 @@
 import { Schema } from "mongoose";
 
 const QuizSchema = new Schema({
-    id: {type:String, required:true, unique:true},
     title: String,
     description: String,
-    course: String,
+    courseId: String,
     points: Number,
     quizeType: String,
     timeLimit : Number,
@@ -29,7 +28,8 @@ const QuizSchema = new Schema({
     lockQuestionsAfterAnswering: Boolean,
     dueDate: String,
     availabilityDate: String,
-    untilDate: String
+    untilDate: String,
+    quetsions : [{type: Schema.Types.ObjectId, ref: "QuestionsModel"}],
   },
   { collection: "quizes" });
 export default QuizSchema;
