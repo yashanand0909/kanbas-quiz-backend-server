@@ -1,6 +1,6 @@
 import * as dao from "./dao.js";
 
-export default function UserRoutes(app) {
+export default function QuizRoutes(app) {
     const createQuiz = async (req, res) => {
     try {
       const quiz = await dao.createQuiz(req.body);
@@ -22,7 +22,7 @@ export default function UserRoutes(app) {
    const getQuiz = async (req, res) => {
     const { qid } = req.params;
     try {
-      const quiz = await dao.findQuiz(id);
+      const quiz = await dao.findQuiz(qid).populate("quetsions").exec();
       res.status(200).json(quiz);
     } catch (error) {
       res.status(404).json({ message: error.message });
@@ -52,7 +52,7 @@ export default function UserRoutes(app) {
     }
   }
   
-   const publishQuize = async (req, res) => {
+   const publishQuiz = async (req, res) => {
     const { qid } = req.params;
     try {
       const quiz = await dao.findQuiz(qid);
@@ -64,7 +64,7 @@ export default function UserRoutes(app) {
     }
   }
   
-   const unpublishQuize = async (req, res) => {
+   const unpublishQuiz = async (req, res) => {
     const { qid } = req.params;
     try {
       const quiz = await dao.findQuiz(qid);
@@ -79,8 +79,8 @@ export default function UserRoutes(app) {
 
   app.post("/api/quizes", createQuiz);
   app.get("/api/courses/:cid/quizes", getQuizesForCourse);
-  app.get("/api/quizes/:qid/publish", publishQuize);
-  app.get("/api/quizes/:qid/unpublish", unpublishQuize);
+  app.get("/api/quizes/:qid/publish", publishQuiz);
+  app.get("/api/quizes/:qid/unpublish", unpublishQuiz);
   app.get("/api/quizes/:qid", getQuiz);
   app.put("/api/quizes/:qid", updateQuiz);
   app.delete("/api/quizes/:qid", deleteQuiz);

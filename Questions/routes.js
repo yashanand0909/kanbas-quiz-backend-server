@@ -1,6 +1,6 @@
 import * as dao from "./dao.js";
 
-export default function UserRoutes(app) {
+export default function QuestionRoutes(app) {
     const createQuestion = async (req, res) => {
     try {
       const question = await dao.createQuestion(req.body);
@@ -39,8 +39,8 @@ export default function UserRoutes(app) {
     } 
     }
 
-    app.post('api/questions', createQuestion);
-    app.put('api/questions/:id', updateQuestion);
-    app.get('api/questions/:id', getQuestion);
-    app.get('api/quiz/:qID/questions', getQuestionsForQuiz);
+    app.post('/api/question', createQuestion);
+    app.put('/api/question/:id', updateQuestion);
+    app.get('/api/question/:id', getQuestion);
+    app.get('/api/quiz/:qID/question', getQuestionsForQuiz);
 }

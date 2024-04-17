@@ -1,6 +1,6 @@
-import { Schema } from "mongoose";
+import mongoose from "mongoose";
 
-const QuizSchema = new Schema({
+const QuizSchema = new mongoose.Schema({
     title: String,
     description: String,
     courseId: String,
@@ -29,8 +29,7 @@ const QuizSchema = new Schema({
     dueDate: String,
     availabilityDate: String,
     untilDate: String,
-    quetsions : [{type: Schema.Types.ObjectId, ref: "QuestionsModel"}],
+    quetsions : [{type: mongoose.Schema.Types.ObjectId, ref: "QuestionsModel"}],
   },
   { collection: "quizes" });
 export default QuizSchema;
-
