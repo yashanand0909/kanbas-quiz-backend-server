@@ -20,8 +20,8 @@ export default function UserRoutes(app) {
     }
     const getQuestionsForQuiz = async (req, res) => {
     try {
-      const {qID} = req.params;
-      const questions = await dao.findQuestionByQuiz(quizID);
+      const {qid} = req.params;
+      const questions = await dao.findQuestionByQuiz(qid);
       res.status(200).json(questions);
     } catch (error) {
       res.status(404).json({ message: error.message });
