@@ -29,7 +29,7 @@ const QuizSchema = new mongoose.Schema({
     dueDate: String,
     availabilityDate: String,
     untilDate: String,
-    quetsions : [{type: mongoose.Schema.Types.ObjectId, ref: "QuestionsModel"}],
+    questions : [{type: mongoose.Schema.Types.ObjectId, ref: "QuestionsModel"}],
   },
   { collection: "quizes" });
 export default QuizSchema;
