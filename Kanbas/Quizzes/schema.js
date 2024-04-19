@@ -5,7 +5,12 @@ const QuizSchema = new mongoose.Schema({
     description: String,
     courseId: String,
     points: Number,
-    quizeType: String,
+    quizType: {
+        type: String,
+        enum: ['Practice Quiz', 'Graded Quiz', 'Graded Survey', 'Ungraded Survey'],
+        default: 'Graded Quiz'
+    
+    },
     timeLimit : Number,
     assignmentGroup: {
       type: String,
