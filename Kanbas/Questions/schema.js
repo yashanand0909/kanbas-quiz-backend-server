@@ -1,8 +1,9 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+
 
 const questionSchema = new mongoose.Schema({
     title: String,
-    quizID:String,
+    quizID: String,
     points: Number,
     question: String,
     questionType: {
@@ -10,9 +11,19 @@ const questionSchema = new mongoose.Schema({
         enum: ['multipleChoice', 'trueFalse', 'fillInBlanks'],
         default: 'multipleChoice'
     },
-    choices: [{text:String, isCorrect:Boolean}], // Array of multiple choice options (for multiple choice questions)
-    trueFalse: Boolean, // true/false answer (for true/false questions)
-    blanks: [{ blank: String, answer: String }] // Array of objects containing blank and corresponding answer (for fill in the blanks questions)
+    choices:[choicesSchema],
+    trueFalse : Boolean,
+    blanks:[blanksSchema]
 }, {collection:"questions"});
+
+
+const choicesSchema = new mongoose.Schema({
+    choices: [{ text: String, isCorrect: Boolean }]
+}, { collection: "choices" });
+
+
+const blanksSchema = new mongoose.Schema({
+    blanks: [{ blank: String, answer: String }]
+}, { collection: "blanks" });
 
 export default questionSchema;
