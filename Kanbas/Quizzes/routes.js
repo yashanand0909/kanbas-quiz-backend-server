@@ -11,8 +11,8 @@ export default function QuizRoutes(app) {
   }
    const getQuizesForCourse = async (req, res) => {
     try {
-      const { courseId } = req.params;
-      const quizes = await dao.findquizesForCourse(courseId);
+      const { cid } = req.params;
+      const quizes = await dao.findquizesForCourse(cid);
       res.status(200).json(quizes);
     } catch (error) {
       res.status(404).json({ message: error.message });
