@@ -6,10 +6,12 @@ const userSchema = new mongoose.Schema({
     email: String,
     lastName: String,
     dob: Date,
+    courses: [{ type: mongoose.Schema.Types.ObjectId, ref: "courses" }],
     role: {
       type: String,
-      enum: ["STUDENT", "FACULTY", "ADMIN", "USER"],
-      default: "USER",},
+      enum: ["STUDENT", "FACULTY"],
+      default: "STUDENT",},
   },
   { collection: "users" });
 export default userSchema;
+
