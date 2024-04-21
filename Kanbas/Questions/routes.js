@@ -56,6 +56,7 @@ export default function QuestionRoutes(app) {
   }
 
   const updateQuestion = async (req, res) => {
+    const { quizId } = req.params;
     const { id } = req.params;
     let question = req.body;
     try {
@@ -68,7 +69,7 @@ export default function QuestionRoutes(app) {
   }
 
   app.post('/api/quizzes/:quizId/questions', createQuestion);
-  app.put('/api/question/:id', updateQuestion);
-  app.get('/api/question/:id', getQuestion);
+  app.put('/api/quizzes/:quizId/questions/:id', updateQuestion);
+  app.get('/api/quizzes/:quizId/questions/:id', getQuestion);
   app.get('/api/quiz/:qID/question', getQuestionsForQuiz);
 }
