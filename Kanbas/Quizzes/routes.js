@@ -3,7 +3,8 @@ import * as dao from "./dao.js";
 export default function QuizRoutes(app) {
     const createQuiz = async (req, res) => {
     try {
-      const quiz = await dao.createQuiz(req.body);
+      const {cid} = req.params;
+      const quiz = await dao.createQuiz(cid,req.body);
       res.status(201).json(quiz);
     } catch (error) {
       res.status(409).json({ message: error.message });
@@ -77,7 +78,7 @@ export default function QuizRoutes(app) {
     }
   }
 
-  app.post("/api/quizzes", createQuiz);
+  app.post("/api/courses/:cid/quizzes", createQuiz);
   app.get("/api/courses/:cid/quizzes", getQuizesForCourse);
   app.get("/api/quizzes/:qid/publish", publishQuiz);
   app.get("/api/quizzes/:qid/unpublish", unpublishQuiz);
